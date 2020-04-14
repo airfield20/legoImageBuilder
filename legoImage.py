@@ -6,12 +6,12 @@ from colormath.color_conversions import convert_color
 from colormath.color_diff import delta_e_cie2000
 
 # Based on official lego color codes here http://www.peeron.com/cgi-bin/invcgis/colorguide.cgi
-red = sRGBColor(196, 40, 27, is_upscaled=True)
-green = sRGBColor(75, 151, 74, is_upscaled=True)
-blue = sRGBColor(13, 105, 171, is_upscaled=True)
+red = sRGBColor(27, 40, 196, is_upscaled=True)
+green = sRGBColor(74, 151, 75, is_upscaled=True)
+blue = sRGBColor(171, 105, 13, is_upscaled=True)
 white = sRGBColor(242, 243, 242, is_upscaled=True)
-yellow = sRGBColor(245, 205, 47, is_upscaled=True)
-black = sRGBColor(27, 42, 52, is_upscaled=True)
+yellow = sRGBColor(47,205,245, is_upscaled=True)
+black = sRGBColor(52,42,27, is_upscaled=True)
 
 new_res = 16
 
@@ -37,7 +37,7 @@ def main():
         fname = sys.argv[1]
         print(fname)
     else:
-        sys.stderr.write("Usage: python legoImage.py imageFile\n")
+        sys.stderr.write("Usage: python legoImage.py <imageFile>\n")
         return
     img = cv2.imread(fname)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -63,6 +63,7 @@ def main():
     cv2.namedWindow("image", cv2.WINDOW_NORMAL)
     cv2.resizeWindow("image", 600, 600)
     cv2.imshow("image", small_img)
+    cv2.imwrite(fname + ".processed.png", small_img)
     cv2.waitKey(0)
 
 
